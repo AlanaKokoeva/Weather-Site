@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>THE WEATHER</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+
+        <div class="content">
+            <h1>THE WEATHER</h1>
+            <p>by Alana Kokoeva</p>
+            <form action="/" method="GET">
+                <input name = "userCity" type="text" placeholder="Your city">
+                <input type="submit" value=">"> 
+            </form>
+            <div class="conatiner-weather">
+                {% for hours,info in enumerate(weather["hourly"]) %}
+                <div class="temp">
+                    <p>{{hours}}:00</p>
+                    <p class="celsium">{{info["temp_c"]}}°С</p>
+                    {% if info["condition"]["text"] == "Cloudy" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/cloudy.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if info["condition"]["text"] == "Sunny" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/sunny.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Patchy rain nearby" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/rainy-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Clear" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/moon-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Light snow" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Moderate snow" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Heavy snow" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Moderate or heavy snow with thunder" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Moderate or heavy snow showers" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Light snow showers" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Overcast" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {{info["condition"]["text"]}}
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <footer>
+            <p>By: © Alana Kokoeva, 2021</p>
+        </footer>
+        <script>
+            if (navigator.geolocation) {
+                // alert('Geolocation is supported!');
+                window.onload = function() {
+                    var startPos;
+                    var geoSuccess = function(position) {
+                        startPos = position;
+                        document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+                        document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+                    };
+                    var geoError = function(position) {
+                        console.log('Error occurred. Error code: ' + error.code);
+                        // error.code can be:
+                        //   0: unknown error
+                        //   1: permission denied
+                        //   2: position unavailable (error response from location provider)
+                        //   3: timed out
+                        };
+                    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+                };
+            }
+            else {
+                alert('Geolocation is not supported fors this Browser/OS version yet.');
+            }
+        
+        </script>
+    </body>
+</html>
+
