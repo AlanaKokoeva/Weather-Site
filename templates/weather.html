@@ -19,6 +19,8 @@
             <div class="conatiner-weather">
                 {% for hours,info in enumerate(weather["hourly"]) %}
                 <div class="temp">
+                <!-- git add имяфайла эта команда позволяет добавить изменения для commit'a
+                    git commit -m "описание изменения" эта команда позволяет зафиксировать состояние проекта-->
                     <p>{{hours}}:00</p>
                     <p class="celsium">{{info["temp_c"]}}°С</p>
                     {% if info["condition"]["text"] == "Cloudy" %}
@@ -54,6 +56,40 @@
                     {% if  info["condition"]["text"] == "Overcast" %}
                     <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
                     {% endif %}
+                    {% if  info["condition"]["text"] == "Partly cloudy" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/cloudy.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Patchy rain possible" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/rainy-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Patchy light drizzle" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/rainy-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Light drizzle" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/rainy-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Light rain shower" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/rainy-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Fog" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/fog-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Mist" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/mist-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Moderate or heavy rain shower" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/rainy-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Thundery outbreaks possible" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/storm-thunder-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Patchy light rain with thunder" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/storm-thunder-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    {% if  info["condition"]["text"] == "Patchy light snow" %}
+                    <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
+                    {% endif %}
+                    
                     {{info["condition"]["text"]}}
                     
                 </div>
