@@ -20,7 +20,8 @@
                 {% for hours,info in enumerate(weather["hourly"]) %}
                 <div class="temp">
                 <!-- git add имяфайла эта команда позволяет добавить изменения для commit'a
-                    git commit -m "описание изменения" эта команда позволяет зафиксировать состояние проекта-->
+                    git commit -m "описание изменения" эта команда позволяет зафиксировать состояние проекта
+                    git push   эта команда отсылает коммиты на удаленный репозиторий-->
                     <p>{{hours}}:00</p>
                     <p class="celsium">{{info["temp_c"]}}°С</p>
                     {% if info["condition"]["text"] == "Cloudy" %}
@@ -90,7 +91,6 @@
                     <img class="icon" src="{{ url_for('static', filename='img/snow-svgrepo-com.svg') }}" alt=""> 
                     {% endif %}
                     
-                    {{info["condition"]["text"]}}
                     
                 </div>
                 {% endfor %}
