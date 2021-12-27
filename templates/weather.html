@@ -10,8 +10,12 @@
     <body>
 
         <div class="content">
-            <h1>THE WEATHER</h1>
-            <p>by Alana Kokoeva</p>
+            <div class="header">
+                <h1>THE WEATHER</h1>
+                <p>Of</p> 
+                <h2>{{weather["city"]}}</h2>
+            </div>
+            
             <form action="/" method="GET">
                 <input name = "userCity" type="text" placeholder="Your city">
                 <input type="submit" value=">"> 
