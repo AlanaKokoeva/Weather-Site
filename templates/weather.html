@@ -21,6 +21,9 @@
                 <input type="submit" value=">"> 
             </form>
             <div class="conatiner-weather">
+                
+                {% if weather ["hourly"] %}
+                {%endif%}
                 {% for hours,info in enumerate(weather["hourly"]) %}
                 <div class="temp">
                 <!-- git add имяфайла эта команда позволяет добавить изменения для commit'a
