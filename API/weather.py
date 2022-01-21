@@ -6,13 +6,17 @@ def get_weather(city):
     url = f"http://api.weatherapi.com/v1/forecast.json?key={API_KEY}&q={city}&days=1&aqi=no&alerts=no"
     json_data = requests.get(url).text
     data = json.loads(json_data)
-   
-    city = data["location"]["name"] 
-    temp = data["current"]["temp_c"]
-    text = data["current"]["condition"]["text"]
-    hourly = data["forecast"]["forecastday"][0]["hour"]
-    weather = {"city" : city, "hourly" : hourly, "temp" : temp, "text" : text}
-    return weather
+    
+    if not "error" in data:
+        city = data["location"]["name"] 
+        temp = data["current"]["temp_c"]
+        text = data["current"]["condition"]["text"]
+        hourly = data["forecast"]["forecastday"][0]["hour"]
+        weather = {"city" : city, "hourly" : hourly, "temp" : temp, "text" : text}
+        return weather 
+    else:
+        return {"error": f"{city} city not found ☹"}
+# {'error': {'code': 1006, 'message': 'No matching location found.'}}
 # http://api.weatherapi.com/v1/forecast.json?key=1a65bf7737534632a1d172625212911&q=Barcelona&days=1&aqi=no&alerts=no
 # location		
 #   name	"Barcelona"

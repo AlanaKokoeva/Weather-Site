@@ -22,8 +22,12 @@
             </form>
             <div class="conatiner-weather">
                 
-                {% if weather ["hourly"] %}
-                {%endif%}
+                {% if "error" in weather %}
+                    <div>
+                        <h2>{{weather["error"]}}</h2>
+                    </div>
+                {% else %}
+                
                 {% for hours,info in enumerate(weather["hourly"]) %}
                 <div class="temp">
                 <!-- git add имяфайла эта команда позволяет добавить изменения для commit'a
@@ -101,6 +105,7 @@
                     
                 </div>
                 {% endfor %}
+                {%endif%}
             </div>
         </div>
         <footer>
